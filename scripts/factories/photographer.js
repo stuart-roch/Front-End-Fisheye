@@ -57,7 +57,7 @@ class photographerFactory{
         const card = document.createElement( 'article' );
         card.setAttribute("class","photographer-section_card");
         const link = document.createElement('a');
-        link.setAttribute("href","./photographer.html?id"+this.getId());
+        link.setAttribute("href","./photographer.html?id="+this.getId());
         card.appendChild(link);
         const img = document.createElement( 'img' );
         img.setAttribute("src", this.getPortrait())
@@ -81,4 +81,5 @@ class photographerFactory{
         card.appendChild(price);
         return card;
     }
+
 }

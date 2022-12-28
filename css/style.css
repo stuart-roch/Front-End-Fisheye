@@ -52,6 +52,7 @@ h1 {
     font-size: 36px;
     white-space: nowrap;
     margin:15px 0 0;
+    font-weight: normal;
 }
 
 .photographer-section_img {
@@ -62,7 +63,8 @@ h1 {
 }
 
 .photographer-section_location{
-    color: #D3573C;
+    color: #901C1C;
+    font-weight: bold;
 }
 
 .photographer-section_tagline{
@@ -71,6 +73,7 @@ h1 {
 
 .photographer-section_price{
     color:#757575;
+    font-weight: normal;
 }
 
 
