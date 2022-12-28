@@ -35,11 +35,12 @@
     }
 
     async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
+        const photographersSection = document.querySelector(".photographer-section");
 
         photographers.forEach((photographer) => {
             const photographerModel = new photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
+            console.log(userCardDOM);
             photographersSection.appendChild(userCardDOM);
         });
     };

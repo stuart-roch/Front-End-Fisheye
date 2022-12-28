@@ -54,25 +54,31 @@ class photographerFactory{
     }
 
     getUserCardDOM() {
-        const article = document.createElement( 'article' );
+        const card = document.createElement( 'article' );
+        card.setAttribute("class","photographer-section_card");
         const link = document.createElement('a');
-        link.setAttribute("href","./photographer.html/");
-        article.appendChild(link);
+        link.setAttribute("href","./photographer.html?id"+this.getId());
+        card.appendChild(link);
         const img = document.createElement( 'img' );
         img.setAttribute("src", this.getPortrait())
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = this.getName();
+        img.setAttribute("class","photographer-section_img");
+        const name = document.createElement( 'h2' );
+        name.setAttribute("class","photographer-section_name")
+        name.textContent = this.getName();
         const location = document.createElement('strong');
+        location.setAttribute("class","photographer-section_location");
         location.textContent = this.getCity() + ", " + this.getCountry();
-        const paragrapheTagline=document.createElement('p');
-        paragrapheTagline.textContent=this.getTagline();
-        const paragraphePrice=document.createElement('strong');
-        paragraphePrice.textContent=this.getPrice()+"/jour";
+        const tagline=document.createElement('p');
+        tagline.textContent=this.getTagline();
+        tagline.setAttribute("class","photographer-section_tagline");
+        const price=document.createElement('strong');
+        price.textContent=this.getPrice()+"/jour";
+        price.setAttribute("class","photographer-section_price");
         link.appendChild(img);
-        link.appendChild(h2);
-        article.appendChild(location)
-        article.appendChild(paragrapheTagline);
-        article.appendChild(paragraphePrice);
-        return (article);
+        link.appendChild(name);
+        card.appendChild(location)
+        card.appendChild(tagline);
+        card.appendChild(price);
+        return card;
     }
 }
