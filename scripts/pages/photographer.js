@@ -25,12 +25,12 @@ async function getMedias(id){
         }})
     })
 }
-/*async function displayMedia(media) {
+/*async function displayMedia(media,name) {
     const mediasSection = document.querySelector(".photographer-media");
 
     
     const mediaModel = new PhotographerMediaFactory(media);
-    const mediaCardDOM = mediaModel.getMediaCardDOM();
+    const mediaCardDOM = mediaModel.getMediaCardDOM(name);
     console.log(mediaCardDOM);
     mediasSection.appendChild(mediaCardDOM);
     

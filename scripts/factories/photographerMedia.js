@@ -38,7 +38,14 @@ class PhotographerMediaFactory{
         return this.price;
     }
 
-    getMediaCardDOM(){
-        
+    getMediaCardDOM(name){
+        const card = document.createElement("article");
+        card.setAttribute("class","photographer-media_card");
+
+        const image = document.createElement("img");
+        image.setAttribute("src","assets/photographers/" + name + "/" + this.getImage());
+        image.setAttribute("class","photographer-media_image");
+        card.appendChild(image); 
+
     }
 }
