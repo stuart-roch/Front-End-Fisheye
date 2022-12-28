@@ -1,8 +1,5 @@
 //Mettre le code JavaScript lié à la page photographer.html
 async function getPhotographer(id) {
-    // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
-    // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-    //let photographers=[]
     fetch("./data/photographers.json")
     .then(function(response){
         return response.json()
@@ -14,41 +11,30 @@ async function getPhotographer(id) {
             console.log(photographer);
         }})
     })
-        /*[
-        {
-            "name": "Ma data test",
-            "id": 1,
-            "city": "Paris",
-            "country": "France",
-            "tagline": "Ceci est ma data test",
-            "price": 400,
-            "portrait": "account.png"
-        },
-        {
-            "name": "Autre data test",
-            "id": 2,
-            "city": "Londres",
-            "country": "UK",
-            "tagline": "Ceci est ma data test 2",
-            "price": 500,
-            "portrait": "account.png"
-        },
-    ]*/
-    // et bien retourner le tableau photographers seulement une fois récupéré
-    /*return ({
-        photographers: [...photographers, ...photographers, ...photographers]})*/
 }
+async function getMedias(id){
+    fetch("./data/photographers.json")
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        data["media"].forEach(media => {
+            if(media.photographerId === id){
+            //displayMedia(media);
+            console.log(media);
+        }})
+    })
+}
+/*async function displayMedia(media) {
+    const mediasSection = document.querySelector(".photographer-media");
 
-async function displayData(photographers) {
-    const photographersSection = document.querySelector(".photographer-section");
-
-    photographers.forEach((photographer) => {
-        const photographerModel = new photographerFactory(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        console.log(userCardDOM);
-        photographersSection.appendChild(userCardDOM);
-    });
-};
+    
+    const mediaModel = new PhotographerMediaFactory(media);
+    const mediaCardDOM = mediaModel.getMediaCardDOM();
+    console.log(mediaCardDOM);
+    mediasSection.appendChild(mediaCardDOM);
+    
+};*/
 async function displayPhotographerHeader(photographer){
     const photographerHeader = document.querySelector(".photographer-header");
 
@@ -78,9 +64,6 @@ async function displayPhotographerHeader(photographer){
     photographerImg.setAttribute("class","photographer-header_img");
     photographerHeader.appendChild(photographerImg);
     
-    
-    
-
 };
 async function init() {
     // Récupère les datas des photographes
@@ -89,6 +72,7 @@ async function init() {
     const photographerId = parseInt(url.searchParams.get('id'));
     //console.log(photographerId);
     await getPhotographer(photographerId);
+    await getMedias(photographerId);
     //displayData(photographers);
 };
 

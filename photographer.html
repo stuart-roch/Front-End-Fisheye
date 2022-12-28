@@ -9,12 +9,13 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="./index.html"><img src="assets/images/logo.png" class="logo" /></a>
     </header>
     <main id="main">
       <div class="photographer-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <section class="photographer-media"></section>
     </main>
     <div id="contact_modal">
 			<div class="modal">
@@ -32,6 +33,7 @@
 			</div>
 		</div>
     <script src="/scripts/factories/photographer.js"></script>
+    <script src="/scripts/factories/photographerMedia.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
