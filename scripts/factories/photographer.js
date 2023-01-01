@@ -72,7 +72,7 @@ class photographerFactory{
         tagline.textContent=this.getTagline();
         tagline.setAttribute("class","photographer-section_tagline");
         const price=document.createElement('strong');
-        price.textContent=this.getPrice()+"/jour";
+        price.textContent=this.getPrice()+"€/jour";
         price.setAttribute("class","photographer-section_price");
         link.appendChild(img);
         link.appendChild(name);

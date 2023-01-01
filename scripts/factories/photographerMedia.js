@@ -47,5 +47,10 @@ class PhotographerMediaFactory{
         image.setAttribute("class","photographer-media_image");
         card.appendChild(image); 
 
+        const title = document.createElement("h2");
+        title.setAttribute("class","photographer-media_title");
+        card.appendChild(title);
+
+        return card;
     }
 }

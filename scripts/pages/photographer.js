@@ -8,7 +8,7 @@ async function getPhotographer(id) {
         data["photographers"].forEach(photographer => {
             if(photographer.id === id){
             displayPhotographerHeader(photographer);
-            console.log(photographer);
+            return photographer.name;
         }})
     })
 }
@@ -18,14 +18,21 @@ async function getMedias(id){
         return response.json()
     })
     .then(function(data){
+        let photographerName;
+        data["photographers"].forEach(photographer => {
+            if(photographer.id === id){
+                photographerName=photographer.name;
+            }
+        })
+        photographerName=photographerName.split(" ")[0];
         data["media"].forEach(media => {
             if(media.photographerId === id){
-            //displayMedia(media);
-            console.log(media);
+                displayMedia(media,photographerName);
+                console.log(photographerName);
         }})
     })
 }
-/*async function displayMedia(media,name) {
+async function displayMedia(media,name) {
     const mediasSection = document.querySelector(".photographer-media");
 
     
@@ -34,7 +41,7 @@ async function getMedias(id){
     console.log(mediaCardDOM);
     mediasSection.appendChild(mediaCardDOM);
     
-};*/
+};
 async function displayPhotographerHeader(photographer){
     const photographerHeader = document.querySelector(".photographer-header");
 
