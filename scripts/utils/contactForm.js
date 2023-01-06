@@ -7,3 +7,6 @@ function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }
+
+const btnModal=document.querySelector(".contact-button");
+btnModal.addEventListener("click",displayModal);

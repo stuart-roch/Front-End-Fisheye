@@ -5,15 +5,24 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/673626fe84.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
     <header>
-      <a href="./index.html"><img src="assets/images/logo.png" class="logo"></a>
+      <a href="./index.html"><img src="assets/images/logo.png" alt="Fisheye Home Page" class="logo"></a>
     </header>
     <main id="main">
       <div class="photographer-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()" aria-label="Contact Me">Contactez-moi</button>
+      </div>
+      <div class="sort">
+        <p>Trier par</p>
+        <div class="sort-options_container">
+          <button class="sort-options">Popularité</button>
+          <button class="sort-options hidden">Date</button>
+          <button class="sort-options hidden">Titre</button>
+        </div>
       </div>
       <section class="photographer-media"></section>
     </main>
@@ -25,8 +34,18 @@
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input>
+						<label for="firstname">Prénom</label>
+						<input type="text" name="firstname" id="firstname">
+
+            <label for="lastname">Nom</label>
+						<input type="text" name="lastname" id="lastname">
+
+            <label for="email">Email</label>
+						<input type="text" name="email" id="email">
+
+            <label for="user-msg">Votre message</label>
+						<input type="text" name="user-msg" id="user-msg">
+
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>

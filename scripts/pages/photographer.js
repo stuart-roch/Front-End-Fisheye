@@ -12,6 +12,7 @@ async function getPhotographer(id) {
         }})
     })
 }
+
 async function getMedias(id){
     fetch("./data/photographers.json")
     .then(function(response){
@@ -32,16 +33,14 @@ async function getMedias(id){
         }})
     })
 }
+
 async function displayMedia(media,name) {
     const mediasSection = document.querySelector(".photographer-media");
-
-    
     const mediaModel = new PhotographerMediaFactory(media);
     const mediaCardDOM = mediaModel.getMediaCardDOM(name);
-    console.log(mediaCardDOM);
     mediasSection.appendChild(mediaCardDOM);
-    
 };
+
 async function displayPhotographerHeader(photographer){
     const photographerHeader = document.querySelector(".photographer-header");
 
@@ -68,19 +67,16 @@ async function displayPhotographerHeader(photographer){
 
     const photographerImg=document.createElement('img');
     photographerImg.setAttribute("src",photographerModel.getPortrait());
+    photographerImg.setAttribute("alt","");
     photographerImg.setAttribute("class","photographer-header_img");
     photographerHeader.appendChild(photographerImg);
     
 };
 async function init() {
-    // Récupère les datas des photographes
-    //const { photographers } = 
     const url = new URL(document.location);
     const photographerId = parseInt(url.searchParams.get('id'));
-    //console.log(photographerId);
     await getPhotographer(photographerId);
     await getMedias(photographerId);
-    //displayData(photographers);
 };
 
 init();

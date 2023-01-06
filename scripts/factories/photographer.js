@@ -61,6 +61,8 @@ class photographerFactory{
         card.appendChild(link);
         const img = document.createElement( 'img' );
         img.setAttribute("src", this.getPortrait())
+        img.setAttribute("alt","");
+        img.setAttribute("aria-label",this.getName());
         img.setAttribute("class","photographer-section_img");
         const name = document.createElement( 'h2' );
         name.setAttribute("class","photographer-section_name")
