@@ -14,10 +14,10 @@
     </header>
     <main id="main">
       <div class="photographer-header">
-        <button class="contact_button" onclick="displayModal()" aria-label="Contact Me">Contactez-moi</button>
+        <button class="contact_button" aria-label="Contact Me">Contactez-moi</button>
       </div>
       <div class="sort">
-        <p>Trier par</p>
+        <strong>Trier par</strong>
         <div class="sort-options_container">
           <button class="sort-options">Popularité</button>
           <button class="sort-options hidden">Date</button>
@@ -30,24 +30,26 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()">
+          <img src="assets/icons/close.svg" class="close-modal">
         </header>
-				<form>
-					<div>
-						<label for="firstname">Prénom</label>
-						<input type="text" name="firstname" id="firstname">
-
-            <label for="lastname">Nom</label>
-						<input type="text" name="lastname" id="lastname">
-
-            <label for="email">Email</label>
-						<input type="text" name="email" id="email">
-
+				<form name="form-contact" action="photographer.html" method="get">
+					<div class="input-container">
+            <div class="form-data">
+              <label for="firstname">Prénom</label>
+              <input type="text" name="firstname" id="firstname">
+            </div>
+            <div class="form-data">
+              <label for="lastname">Nom</label>
+              <input type="text" name="lastname" id="lastname">
+            </div>
+            <div class="form-data">
+              <label for="email">Email</label>
+              <input type="text" name="email" id="email">
+            </div>
             <label for="user-msg">Votre message</label>
 						<input type="text" name="user-msg" id="user-msg">
-
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <input type="submit" class="modal_button-submit">
 				</form>
 			</div>
 		</div>

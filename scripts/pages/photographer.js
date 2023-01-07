@@ -8,7 +8,6 @@ async function getPhotographer(id) {
         data["photographers"].forEach(photographer => {
             if(photographer.id === id){
             displayPhotographerHeader(photographer);
-            return photographer.name;
         }})
     })
 }
@@ -26,10 +25,11 @@ async function getMedias(id){
             }
         })
         photographerName=photographerName.split(" ")[0];
+        photographerName=photographerName.replace("-"," ");
+        console.log(photographerName);
         data["media"].forEach(media => {
             if(media.photographerId === id){
                 displayMedia(media,photographerName);
-                console.log(photographerName);
         }})
     })
 }
