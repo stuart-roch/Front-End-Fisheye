@@ -37,7 +37,6 @@ function modalIsValid(){
         if(field.regex.test(field.input.value)){
             field.isValid=true;
             cpt++;
-            //console.log(field);
         }else{
             field.isValid=false;
     }})

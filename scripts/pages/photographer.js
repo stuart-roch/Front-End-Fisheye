@@ -46,12 +46,20 @@ async function displayPhotographerHeader(photographer){
     
 };
 async function getPhotographerName(photographer){
-    let photographerName=photographer.name;
+    const photographerModel = new photographerFactory(photographer);
+    let photographerName=photographerModel.getName();
     photographerName=photographerName.split(" ")[0];
     photographerName=photographerName.replace("-"," ");
     return photographerName;
 }
+async function displayPriceAndLikes(photographer,medias){
+    const div=document.querySelector(".photographer_price-and-likes");
+    const photographerModel = new photographerFactory(photographer);
+    const sumLikes=0;
+    const price=document.createElement("strong");
 
+
+}
 async function incrementLikes(){
     likesContainers=document.querySelectorAll(".photographer-media_card-like-container");
     likesContainers.forEach(likeContainer => { 
@@ -67,14 +75,13 @@ async function incrementLikes(){
             }
         })
     })
-    
 }
 async function init() {
     const url = new URL(document.location);
     const photographerId = parseInt(url.searchParams.get('id'));
     const photographer=await getPhotographer(photographerId);
     if(photographer === undefined){
-        document.location.href="../../error404.html";
+        document.location.href="../error404.html";
     }
     const photographerName=await getPhotographerName(photographer);
     displayPhotographerHeader(photographer);
