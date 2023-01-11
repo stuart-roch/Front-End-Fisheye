@@ -51,6 +51,24 @@ async function getPhotographerName(photographer){
     photographerName=photographerName.replace("-"," ");
     return photographerName;
 }
+
+async function incrementLikes(){
+    likesContainers=document.querySelectorAll(".photographer-media_card-like-container");
+    likesContainers.forEach(likeContainer => { 
+        let [numberLike,iconLikes]=likeContainer.children;
+        iconLikes.addEventListener("click",function(){
+            
+            if(numberLike.dataset["incremented"]==="false"){
+                numberLike.textContent=parseInt(numberLike.textContent)+1;
+                numberLike.setAttribute("data-incremented","true");
+            }else{
+                numberLike.textContent=parseInt(numberLike.textContent)-1;
+                numberLike.setAttribute("data-incremented","false");
+            }
+        })
+    })
+    
+}
 async function init() {
     const url = new URL(document.location);
     const photographerId = parseInt(url.searchParams.get('id'));
@@ -62,7 +80,7 @@ async function init() {
     displayPhotographerHeader(photographer);
     const medias=await getMedias(photographerId);
     displayMedia(medias,photographerName);
-    console.log(document.querySelector(".photographer-media_card"));
+    incrementLikes();
 };
 
 init();

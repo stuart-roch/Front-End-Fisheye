@@ -56,7 +56,7 @@
     margin-right: 5%;
 }
 
-.photographer-media_card:focus-visible .photographer-media_image{
+.photographer-media_image:focus-visible,.photographer-media_video:focus-visible{
     border:4px solid #901C1C;
     outline: none;
 }

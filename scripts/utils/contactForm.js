@@ -73,7 +73,7 @@ form.addEventListener("submit",function(e){
     }
 })
 
-modal.addEventListener("keydown",function(e){
+document.addEventListener("keydown",function(e){
     if(modal.ariaHidden === "false" && e.key === "Escape"){
         closeModal();
     }

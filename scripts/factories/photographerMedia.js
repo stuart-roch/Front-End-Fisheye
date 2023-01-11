@@ -49,13 +49,13 @@ class PhotographerMediaFactory{
         card.setAttribute("data-title",this.getTitle());
         card.setAttribute("data-likes",this.getLikes());
         card.setAttribute("data-date",this.getDate());
-        card.setAttribute("tabindex","0");
 
         if(this.image !== undefined){
             const image = document.createElement("img");
             image.setAttribute("src","assets/photographers/" + name + "/" + this.getImage());
             image.setAttribute("alt",this.getTitle());
             image.setAttribute("class","photographer-media_image");
+            image.setAttribute("tabindex","0");
             card.appendChild(image); 
         }
 
@@ -64,6 +64,7 @@ class PhotographerMediaFactory{
             video.setAttribute("src","assets/photographers/" + name + "/" + this.getVideo());
             video.setAttribute("controls","default");
             video.setAttribute("class","photographer-media_video");
+            video.setAttribute("tabindex","0");
             card.appendChild(video);
         }
 
@@ -82,6 +83,7 @@ class PhotographerMediaFactory{
 
         const numberLikes = document.createElement("p");
         numberLikes.setAttribute("class","photographer-media_number-likes");
+        numberLikes.setAttribute("data-incremented","false");
         numberLikes.textContent = this.getLikes();
         cardLikeContainer.appendChild(numberLikes);
 
