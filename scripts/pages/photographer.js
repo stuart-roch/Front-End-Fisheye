@@ -81,7 +81,7 @@ async function init() {
     const photographerId = parseInt(url.searchParams.get('id'));
     const photographer=await getPhotographer(photographerId);
     if(photographer === undefined){
-        document.location.href="../error404.html";
+        document.location.href="./error404.html";
     }
     const photographerName=await getPhotographerName(photographer);
     displayPhotographerHeader(photographer);

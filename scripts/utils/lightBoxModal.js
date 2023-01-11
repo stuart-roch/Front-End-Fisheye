@@ -1,4 +1,4 @@
-function displayModal() {
+function displayLightBox() {
     const modal = document.getElementById("lightbox-modal");
     const main=document.querySelector("main");
 	modal.style.display = "block";
@@ -7,7 +7,7 @@ function displayModal() {
     main.style.display=none;
 }
 
-function closeModal() {
+function closeLightBox() {
     const modal = document.getElementById("lightbox-modal");
     const main=document.querySelector("main");
     modal.style.display = "none";
