@@ -1,83 +1,68 @@
 //Mettre le code JavaScript lié à la page photographer.html
 async function getPhotographer(id) {
-    fetch("./data/photographers.json")
+    return fetch("./data/photographers.json")
     .then(function(response){
         return response.json()
     })
     .then(function(data){
+        let currentPhotographer;
         data["photographers"].forEach(photographer => {
             if(photographer.id === id){
-            displayPhotographerHeader(photographer);
-        }})
+                currentPhotographer=photographer;
+            }})
+        return currentPhotographer;
     })
 }
 
 async function getMedias(id){
-    fetch("./data/photographers.json")
+    return fetch("./data/photographers.json")
     .then(function(response){
         return response.json()
     })
     .then(function(data){
-        let photographerName;
-        data["photographers"].forEach(photographer => {
-            if(photographer.id === id){
-                photographerName=photographer.name;
-            }
-        })
-        photographerName=photographerName.split(" ")[0];
-        photographerName=photographerName.replace("-"," ");
-        console.log(photographerName);
+        let medias=[];
         data["media"].forEach(media => {
             if(media.photographerId === id){
-                displayMedia(media,photographerName);
+                medias.push(media);
         }})
+        return medias;
     })
 }
 
-async function displayMedia(media,name) {
+async function displayMedia(medias,name) {
     const mediasSection = document.querySelector(".photographer-media");
-    const mediaModel = new PhotographerMediaFactory(media);
-    const mediaCardDOM = mediaModel.getMediaCardDOM(name);
-    mediasSection.appendChild(mediaCardDOM);
+    medias.forEach(media => {
+        const mediaModel = new PhotographerMediaFactory(media);
+        const mediaCardDOM = mediaModel.getMediaCardDOM(name);
+        mediasSection.appendChild(mediaCardDOM);})
 };
 
 async function displayPhotographerHeader(photographer){
     const photographerHeader = document.querySelector(".photographer-header");
-
     const photographerModel = new photographerFactory(photographer);
-
-    const photographerDescription = document.createElement('div');
-    photographerDescription.setAttribute("class","photographer-header_description");
+    const {photographerDescription,photographerImg} = photographerModel.getPhotographerHeaderDOM();
     photographerHeader.appendChild(photographerDescription);
-
-    const photographerName = document.createElement('h1');
-    photographerName.setAttribute("class","photographer-header_name");
-    photographerName.textContent=photographerModel.getName();
-    photographerDescription.appendChild(photographerName);
-
-    const photographerLocation=document.createElement('strong');
-    photographerLocation.setAttribute("class","photographer-header_location");
-    photographerLocation.textContent = photographerModel.getCity() + ", " + photographerModel.getCountry();
-    photographerDescription.appendChild(photographerLocation);
-
-    const photographerTagline=document.createElement('p');
-    photographerTagline.setAttribute("class","photographer-header_tagline");
-    photographerTagline.textContent=photographerModel.getTagline();
-    photographerDescription.appendChild(photographerTagline);
-
-    const photographerImg=document.createElement('img');
-    photographerImg.setAttribute("src",photographerModel.getPortrait());
-    photographerImg.setAttribute("alt","");
-    photographerImg.setAttribute("class","photographer-header_img");
-    photographerHeader.appendChild(photographerImg);
+    photographerHeader.appendChild(photographerImg);   
     
 };
+async function getPhotographerName(photographer){
+    let photographerName=photographer.name;
+    photographerName=photographerName.split(" ")[0];
+    photographerName=photographerName.replace("-"," ");
+    return photographerName;
+}
 async function init() {
     const url = new URL(document.location);
     const photographerId = parseInt(url.searchParams.get('id'));
-    await getPhotographer(photographerId);
-    await getMedias(photographerId);
+    const photographer=await getPhotographer(photographerId);
+    if(photographer === undefined){
+        document.location.href="../../error404.html";
+    }
+    const photographerName=await getPhotographerName(photographer);
+    displayPhotographerHeader(photographer);
+    const medias=await getMedias(photographerId);
+    displayMedia(medias,photographerName);
+    console.log(document.querySelector(".photographer-media_card"));
 };
 
 init();
-

@@ -53,7 +53,7 @@ class photographerFactory{
         return `assets/photographers/Photographers ID Photos/`+this.portrait;
     }
 
-    getUserCardDOM() {
+    getPhotographerCardDOM() {
         const card = document.createElement( 'article' );
         card.setAttribute("class","photographer-section_card");
         const link = document.createElement('a');
@@ -83,5 +83,32 @@ class photographerFactory{
         card.appendChild(price);
         return card;
     }
+    getPhotographerHeaderDOM(){
 
+        const photographerDescription = document.createElement('div');
+        photographerDescription.setAttribute("class","photographer-header_description");
+    
+        const photographerName = document.createElement('h1');
+        photographerName.setAttribute("class","photographer-header_name");
+        photographerName.textContent=this.getName();
+        photographerDescription.appendChild(photographerName);
+    
+        const photographerLocation=document.createElement('strong');
+        photographerLocation.setAttribute("class","photographer-header_location");
+        photographerLocation.textContent = this.getCity() + ", " + this.getCountry();
+        photographerDescription.appendChild(photographerLocation);
+    
+        const photographerTagline=document.createElement('p');
+        photographerTagline.setAttribute("class","photographer-header_tagline");
+        photographerTagline.textContent=this.getTagline();
+        photographerDescription.appendChild(photographerTagline);
+    
+        const photographerImg=document.createElement('img');
+        photographerImg.setAttribute("src",this.getPortrait());
+        photographerImg.setAttribute("alt","");
+        photographerImg.setAttribute("aria-label",this.getName());
+        photographerImg.setAttribute("class","photographer-header_img");
+        
+        return {photographerDescription,photographerImg};
+    }
 }

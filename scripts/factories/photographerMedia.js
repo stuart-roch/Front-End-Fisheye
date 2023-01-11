@@ -46,10 +46,15 @@ class PhotographerMediaFactory{
     getMediaCardDOM(name){
         const card = document.createElement("article");
         card.setAttribute("class","photographer-media_card");
+        card.setAttribute("data-title",this.getTitle());
+        card.setAttribute("data-likes",this.getLikes());
+        card.setAttribute("data-date",this.getDate());
+        card.setAttribute("tabindex","0");
 
         if(this.image !== undefined){
             const image = document.createElement("img");
             image.setAttribute("src","assets/photographers/" + name + "/" + this.getImage());
+            image.setAttribute("alt",this.getTitle());
             image.setAttribute("class","photographer-media_image");
             card.appendChild(image); 
         }
@@ -82,6 +87,7 @@ class PhotographerMediaFactory{
 
         const likeIcon = document.createElement("i");
         likeIcon.setAttribute("class","fa-solid fa-heart");
+        likeIcon.setAttribute("role","img")
         likeIcon.setAttribute("aria-label","likes"); 
         cardLikeContainer.appendChild(likeIcon);
 

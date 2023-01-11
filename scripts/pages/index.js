@@ -2,12 +2,15 @@
         // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
         // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
         //let photographers=[]
-        fetch("./data/photographers.json")
+        return fetch("./data/photographers.json")
         .then(function(response){
-            return response.json()
+            if(response.ok){
+                return response.json()
+            }
         })
         .then(function(data){
-            displayData(data["photographers"])
+            return data["photographers"];
+            //displayData(data["photographers"])
         })
             /*[
             {
@@ -39,8 +42,7 @@
 
         photographers.forEach((photographer) => {
             const photographerModel = new photographerFactory(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            console.log(userCardDOM);
+            const userCardDOM = photographerModel.getPhotographerCardDOM();
             photographersSection.appendChild(userCardDOM);
         });
     };
@@ -48,9 +50,11 @@
     async function init() {
         // Récupère les datas des photographes
         //const { photographers } = 
-        await getPhotographers();
-        //displayData(photographers);
+        const photographers=await getPhotographers();
+        displayData(photographers);
     };
     
     init();
     
+    
+       

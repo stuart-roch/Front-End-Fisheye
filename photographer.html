@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <a href="./index.html"><img src="assets/images/logo.png" alt="Fisheye Home Page" class="logo"></a>
+      <a href="./index.html" class="link-logo"><img src="assets/images/logo.png" alt="Fisheye Home Page" class="logo"></a>
     </header>
     <main id="main">
       <div class="photographer-header">
@@ -26,36 +26,42 @@
       </div>
       <section class="photographer-media"></section>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" role="dialog" aria-hidden="true" aria-labelledby="contact_modal-title">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" class="close-modal">
+          <h2 id="contact_modal-title">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" class="close-modal" alt="" aria-label="Ferme le formulaire de contact" tabindex="0">
         </header>
 				<form name="form-contact" action="photographer.html" method="get">
 					<div class="input-container">
-            <div class="form-data">
-              <label for="firstname">Prénom</label>
-              <input type="text" name="firstname" id="firstname">
-            </div>
-            <div class="form-data">
-              <label for="lastname">Nom</label>
-              <input type="text" name="lastname" id="lastname">
-            </div>
-            <div class="form-data">
-              <label for="email">Email</label>
-              <input type="text" name="email" id="email">
-            </div>
-            <label for="user-msg">Votre message</label>
-						<input type="text" name="user-msg" id="user-msg">
+            
+              <label for="firstname" id="label-firstname">Prénom</label>
+              <input type="text" name="firstname" id="firstname" class="text-control" aria-labelledby="label-firstname">
+              <p class="err-msg hidden">Veuillez entrer 2 caractères ou plus pour le champ du prénom.</p>
+            
+            
+              <label for="lastname" id="label-lastname">Nom</label>
+              <input type="text" name="lastname" id="lastname" class="text-control" aria-labelledby="label-lastname">
+              <p class="err-msg hidden">Veuillez entrer 2 caractères ou plus pour le champ du nom.</p>
+            
+
+              <label for="email" id="label-email">Email</label>
+              <input type="text" name="email" id="email" class="text-control" aria-labelledby="label-email">
+              <p class="err-msg hidden">Veuillez entrer une adresse mail valide.</p>
+
+            <label for="user-msg" id="label-msg">Votre message</label>
+						<input type="text" name="user-msg" id="user-msg" aria-labelledby="label-msg">
 					</div>
-          <input type="submit" class="modal_button-submit">
+          <button type="submit" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <div id="lightbox-modal" role="dialog" aria-hidden="true"></div>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/factories/photographerMedia.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
+    <script src="scripts/utils/lightBoxModal.js"></script>
+    <script src="scripts/utils/sort.js"></script>
   </body>
 </html>
