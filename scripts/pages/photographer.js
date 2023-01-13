@@ -55,22 +55,34 @@ async function getPhotographerName(photographer){
 async function displayPriceAndLikes(photographer,medias){
     const div=document.querySelector(".photographer_price-and-likes");
     const photographerModel = new photographerFactory(photographer);
-    const sumLikes=0;
+    let sumLikes=0;
+    medias.forEach(media => {
+        sumLikes+=media.likes;
+    })
+    const sumLikesEl=document.createElement("strong");
+    sumLikesEl.setAttribute("class","photographer_tot-likes");
+    sumLikesEl.textContent=sumLikes;
+    div.appendChild(sumLikesEl);
     const price=document.createElement("strong");
-
-
+    price.setAttribute("class","photographer_price");
+    price.textContent=photographerModel.getPrice()+"€/jour";
+    div.appendChild(price);
+    
 }
 async function incrementLikes(){
     likesContainers=document.querySelectorAll(".photographer-media_card-like-container");
+    sumLikesEl=document.querySelector(".photographer_tot-likes");
     likesContainers.forEach(likeContainer => { 
         let [numberLike,iconLikes]=likeContainer.children;
         iconLikes.addEventListener("click",function(){
             
             if(numberLike.dataset["incremented"]==="false"){
                 numberLike.textContent=parseInt(numberLike.textContent)+1;
+                sumLikesEl.textContent=parseInt(sumLikesEl.textContent)+1;
                 numberLike.setAttribute("data-incremented","true");
             }else{
                 numberLike.textContent=parseInt(numberLike.textContent)-1;
+                sumLikesEl.textContent=parseInt(sumLikesEl.textContent)-1;
                 numberLike.setAttribute("data-incremented","false");
             }
         })
@@ -87,6 +99,7 @@ async function init() {
     displayPhotographerHeader(photographer);
     const medias=await getMedias(photographerId);
     displayMedia(medias,photographerName);
+    displayPriceAndLikes(photographer,medias);
     incrementLikes();
 };
 

@@ -94,6 +94,28 @@
     margin-right: 10px;
 }
 
+.photographer_price-and-likes{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 15%;
+    bottom:0;
+    right:5%;
+    background-color: #DB8876;
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    padding: 20px 40px;
+}
+
+.photographer_tot-likes{
+    order:-1;
+    margin-right: 5px;
+}
+.photographer_price{
+    margin-left:40px;
+}
+
 .sort{
     display: flex;
     margin: 20px 0 0 100px;
