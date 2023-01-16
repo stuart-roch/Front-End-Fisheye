@@ -5,11 +5,11 @@ async function getPhotographer(id) {
         return response.json()
     })
     .then(function(data){
-        let currentPhotographer;
-        data["photographers"].forEach(photographer => {
+        const currentPhotographer=data["photographers"].filter(e => e.id === id)[0];
+        /*data["photographers"].forEach(photographer => {
             if(photographer.id === id){
                 currentPhotographer=photographer;
-            }})
+            }})*/
         return currentPhotographer;
     })
 }
@@ -20,11 +20,11 @@ async function getMedias(id){
         return response.json()
     })
     .then(function(data){
-        let medias=[];
-        data["media"].forEach(media => {
+        const medias=data["media"].filter(media => media.photographerId === id);
+        /*data["media"].forEach(media => {
             if(media.photographerId === id){
                 medias.push(media);
-        }})
+        }})*/
         return medias;
     })
 }
@@ -67,7 +67,6 @@ async function displayPriceAndLikes(photographer,medias){
     price.setAttribute("class","photographer_price");
     price.textContent=photographerModel.getPrice()+"€/jour";
     div.appendChild(price);
-    
 }
 async function incrementLikes(){
     likesContainers=document.querySelectorAll(".photographer-media_card-like-container");
@@ -98,9 +97,11 @@ async function init() {
     const photographerName=await getPhotographerName(photographer);
     displayPhotographerHeader(photographer);
     const medias=await getMedias(photographerId);
+    //console.log(medias.sort((a,b) => {return b.likes - a.likes}));
     displayMedia(medias,photographerName);
     displayPriceAndLikes(photographer,medias);
     incrementLikes();
+    sort(medias,photographerName);
 };
 
 init();
