@@ -97,11 +97,12 @@ async function init() {
     const photographerName=await getPhotographerName(photographer);
     displayPhotographerHeader(photographer);
     const medias=await getMedias(photographerId);
-    //console.log(medias.sort((a,b) => {return b.likes - a.likes}));
+    medias.sort((a,b) => {return b.likes - a.likes});
     displayMedia(medias,photographerName);
     displayPriceAndLikes(photographer,medias);
     incrementLikes();
     sort(medias,photographerName);
+    launchLightBoxEvent();
 };
 
 init();

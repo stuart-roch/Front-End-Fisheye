@@ -10,20 +10,19 @@ async function sort(medias,name){
             medias.sort(compareByLikes);
             document.querySelector(".photographer-media").innerHTML="";
             displayMedia(medias,name);
-            incrementLikes();
         }
         if(option === optDate){
             medias.sort(compareByDate);
             document.querySelector(".photographer-media").innerHTML="";
             displayMedia(medias,name);
-            incrementLikes();
         }
         if(option === optTitle){
             medias.sort(compareByTitle);
             document.querySelector(".photographer-media").innerHTML="";
             displayMedia(medias,name);
-            incrementLikes();
         }
+        incrementLikes();
+        launchLightBoxEvent();
     }));
     
     return medias
@@ -102,16 +101,36 @@ async function replaceOption(newOption,medias,name){
     const parent=currentOption.parentNode;
     const replacedOption=parent.removeChild(currentOption);
     const option=document.createElement("button");
-    console.log(replacedOption.children);
-    replacedOption.children.forEach (child => option.append(child))
+    //console.log(replacedOption.children);
+    //replacedOption.children.forEach (child => option.append(child))
     //option.appendChild(replacedOption.children);
     newOption.classList.replace("sort-options","main-sort-option");
-    newOption.setAttribute("aria-expanded","true");
+    newOption.setAttribute("aria-expanded","false");
     replacedOption.classList.replace("main-sort-option","sort-options");
     replacedOption.removeAttribute("aria-expanded");
-    parent.appendChild(option);
-    //newOption.removeEventListener("click",function(){replaceOption(option)})
-    /*replacedOption.removeEventListener("click",function(){
+    parent.appendChild(replacedOption);
+    /*newOption.removeEventListener("click",function(){
+        replaceOption(option,medias,name);
+        if(option === optPopularity){
+            medias.sort(compareByLikes);
+            document.querySelector(".photographer-media").innerHTML="";
+            displayMedia(medias,name);
+            incrementLikes();
+        }
+        if(option === optDate){
+            medias.sort(compareByDate);
+            document.querySelector(".photographer-media").innerHTML="";
+            displayMedia(medias,name);
+            incrementLikes();
+        }
+        if(option === optTitle){
+            medias.sort(compareByTitle);
+            document.querySelector(".photographer-media").innerHTML="";
+            displayMedia(medias,name);
+            incrementLikes();
+        }
+    },"false")
+    replacedOption.removeEventListener("click",function(){
         otherOption.forEach(option => option.classList.toggle("hidden"));
         if(currentOption.getAttribute("aria-expanded")==="true"){
             document.querySelector(".fa-chevron-down").classList.replace("fa-chevron-down","fa-chevron-up");
@@ -120,7 +139,7 @@ async function replaceOption(newOption,medias,name){
             document.querySelector(".fa-chevron-up").classList.replace("fa-chevron-up","fa-chevron-down");
             currentOption.setAttribute("aria-expanded","true");
         }
-    });*/
+    },"false");*/
     sort(medias,name);
 
 }
@@ -128,7 +147,6 @@ async function replaceOption(newOption,medias,name){
 function expandOptions(){
     const currentOption=document.querySelector(".main-sort-option");
     const otherOption=document.querySelectorAll(".sort-options");
-    console.log(currentOption)
     currentOption.addEventListener("click",function(){
         otherOption.forEach(option => option.classList.toggle("hidden"));
         if(currentOption.getAttribute("aria-expanded")==="true"){

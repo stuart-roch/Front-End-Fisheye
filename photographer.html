@@ -72,7 +72,14 @@
 				</form>
 			</div>
 		</div>
-    <div id="lightbox-modal" role="dialog" aria-hidden="true"></div>
+    <div id="lightbox-modal" role="dialog" aria-label="Vue de l'image en premier plan" aria-hidden="true">
+      <img src="assets/icons/close_lightBox.svg" class="close-lightbox-modal" alt="" aria-label="Ferme la fenetre de dialog" tabindex="0">
+      <i class="fa-solid fa-chevron-left controls-lightbox_prev" aria-label="Image précedente" tabindex="0"></i>
+      <ul>
+        <li class="slide-container"></li>
+      </ul>
+      <i class="fa-solid fa-chevron-right controls-lightbox_next" aria-label="Image suivante" tabindex="0"></i>
+    </div>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/factories/photographerMedia.js"></script>
     <script src="scripts/pages/photographer.js"></script>

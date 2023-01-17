@@ -46,16 +46,14 @@ class PhotographerMediaFactory{
     getMediaCardDOM(name){
         const card = document.createElement("article");
         card.setAttribute("class","photographer-media_card");
-        card.setAttribute("data-title",this.getTitle());
-        card.setAttribute("data-likes",this.getLikes());
-        card.setAttribute("data-date",this.getDate());
-
+    
         if(this.image !== undefined){
             const image = document.createElement("img");
             image.setAttribute("src","assets/photographers/" + name + "/" + this.getImage());
             image.setAttribute("alt",this.getTitle());
             image.setAttribute("class","photographer-media_image");
             image.setAttribute("tabindex","0");
+            image.setAttribute("data-title",this.getTitle());
             card.appendChild(image); 
         }
 
@@ -65,6 +63,7 @@ class PhotographerMediaFactory{
             video.setAttribute("controls","default");
             video.setAttribute("class","photographer-media_video");
             video.setAttribute("tabindex","0");
+            video.setAttribute("data-title",this.getTitle());
             card.appendChild(video);
         }
 
