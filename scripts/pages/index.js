@@ -1,60 +1,41 @@
-    async function getPhotographers() {
-        // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
-        // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
-        //let photographers=[]
-        return fetch("./data/photographers.json")
-        .then(function(response){
-            if(response.ok){
-                return response.json()
-            }
-        })
-        .then(function(data){
-            return data["photographers"];
-            //displayData(data["photographers"])
-        })
-            /*[
-            {
-                "name": "Ma data test",
-                "id": 1,
-                "city": "Paris",
-                "country": "France",
-                "tagline": "Ceci est ma data test",
-                "price": 400,
-                "portrait": "account.png"
-            },
-            {
-                "name": "Autre data test",
-                "id": 2,
-                "city": "Londres",
-                "country": "UK",
-                "tagline": "Ceci est ma data test 2",
-                "price": 500,
-                "portrait": "account.png"
-            },
-        ]*/
-        // et bien retourner le tableau photographers seulement une fois récupéré
-        /*return ({
-            photographers: [...photographers, ...photographers, ...photographers]})*/
-    }
+/*
+  Récupere les données des photographes du ficher JSON aprés reussite de la promise
+  return {liste d'objet}
+*/
 
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer-section");
+async function getPhotographers() {
+    return fetch("./data/photographers.json")
+    .then(function(response){
+        if(response.ok){
+            return response.json()
+        }
+    })
+    .then(function(data){
+        return data["photographers"];
+    })
+}
 
-        photographers.forEach((photographer) => {
-            const photographerModel = new photographerFactory(photographer);
-            const userCardDOM = photographerModel.getPhotographerCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
-    };
+/*
+  Affiche les différents photographes dans la section photographes 
+*/
+async function displayData(photographers) {
+    const photographersSection = document.querySelector(".photographer-section");
 
-    async function init() {
-        // Récupère les datas des photographes
-        //const { photographers } = 
-        const photographers=await getPhotographers();
-        displayData(photographers);
-    };
-    
-    init();
-    
-    
-       
+    photographers.forEach((photographer) => {
+        const photographerModel = new photographerFactory(photographer);
+        const userCardDOM = photographerModel.getPhotographerCardDOM();
+        photographersSection.appendChild(userCardDOM);
+    });
+}
+
+/*
+  Initialise la partie dynamique de la page index.html
+*/
+async function init() {
+    const photographers=await getPhotographers();
+    displayData(photographers);
+};
+
+init();
+
+

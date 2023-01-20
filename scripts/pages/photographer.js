@@ -1,4 +1,8 @@
-//Mettre le code JavaScript lié à la page photographer.html
+/*
+    Récupère les données du photographe dans le fichier JSON selon l'id du photographe
+    param {int}
+    return {objet}
+*/  
 async function getPhotographer(id) {
     return fetch("./data/photographers.json")
     .then(function(response){
@@ -6,14 +10,15 @@ async function getPhotographer(id) {
     })
     .then(function(data){
         const currentPhotographer=data["photographers"].filter(e => e.id === id)[0];
-        /*data["photographers"].forEach(photographer => {
-            if(photographer.id === id){
-                currentPhotographer=photographer;
-            }})*/
         return currentPhotographer;
     })
 }
 
+/*
+    Récupère les données des médias du photographe dans le fichier JSON selon l'id du photographe
+    param {int}
+    return {liste d'objet}
+*/ 
 async function getMedias(id){
     return fetch("./data/photographers.json")
     .then(function(response){
@@ -21,15 +26,40 @@ async function getMedias(id){
     })
     .then(function(data){
         const medias=data["media"].filter(media => media.photographerId === id);
-        /*data["media"].forEach(media => {
-            if(media.photographerId === id){
-                medias.push(media);
-        }})*/
         return medias;
     })
 }
 
-async function displayMedia(medias,name) {
+/*
+    Affiche les infos du photographer dans l'header
+    param {objet}
+*/ 
+function getPhotographerName(photographer){
+    const photographerModel = new photographerFactory(photographer);
+    let photographerName=photographerModel.getName();
+    photographerName=photographerName.split(" ")[0];
+    photographerName=photographerName.replace("-"," ");
+    return photographerName;
+}
+
+/*
+    Affiche les infos du photographe dans la partie photographer-header
+    param {objet}
+*/ 
+function displayPhotographerHeader(photographer){
+    const photographerHeader = document.querySelector(".photographer-header");
+    const photographerModel = new photographerFactory(photographer);
+    const {photographerDescription,photographerImg} = photographerModel.getPhotographerHeaderDOM();
+    photographerHeader.appendChild(photographerDescription);
+    photographerHeader.appendChild(photographerImg);   
+    
+}
+
+/*
+    Affiche les médias du photographe dans la section média
+    param {liste d'objet,string}
+*/ 
+function displayMedia(medias,name) {
     const mediasSection = document.querySelector(".photographer-media");
     medias.forEach(media => {
         const mediaModel = new PhotographerMediaFactory(media);
@@ -37,22 +67,11 @@ async function displayMedia(medias,name) {
         mediasSection.appendChild(mediaCardDOM);})
 };
 
-async function displayPhotographerHeader(photographer){
-    const photographerHeader = document.querySelector(".photographer-header");
-    const photographerModel = new photographerFactory(photographer);
-    const {photographerDescription,photographerImg} = photographerModel.getPhotographerHeaderDOM();
-    photographerHeader.appendChild(photographerDescription);
-    photographerHeader.appendChild(photographerImg);   
-    
-};
-async function getPhotographerName(photographer){
-    const photographerModel = new photographerFactory(photographer);
-    let photographerName=photographerModel.getName();
-    photographerName=photographerName.split(" ")[0];
-    photographerName=photographerName.replace("-"," ");
-    return photographerName;
-}
-async function displayPriceAndLikes(photographer,medias){
+/*
+    Affiche le prix et le nombre de likes totaux des médias du photographe
+    param {objet,liste d'objet}
+*/
+function displayPriceAndLikes(photographer,medias){
     const div=document.querySelector(".photographer_price-and-likes");
     const photographerModel = new photographerFactory(photographer);
     let sumLikes=0;
@@ -68,10 +87,16 @@ async function displayPriceAndLikes(photographer,medias){
     price.textContent=photographerModel.getPrice()+"€/jour";
     div.appendChild(price);
 }
-async function incrementLikes(){
+
+/*
+    Incremente le nombre de like de chaque média et
+    incremente le nombre de like totaux au clic sur l'icon de like
+*/
+function incrementLikes(){
     likesContainers=document.querySelectorAll(".photographer-media_card-like-container");
     sumLikesEl=document.querySelector(".photographer_tot-likes");
     likesContainers.forEach(likeContainer => { 
+
         let [numberLike,iconLikes]=likeContainer.children;
         iconLikes.addEventListener("click",function(){
             
@@ -87,6 +112,7 @@ async function incrementLikes(){
         })
     })
 }
+
 async function init() {
     const url = new URL(document.location);
     const photographerId = parseInt(url.searchParams.get('id'));
