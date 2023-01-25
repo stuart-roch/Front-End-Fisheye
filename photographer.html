@@ -14,27 +14,29 @@
     </header>
     <main id="main">
       <div class="photographer-header">
-        <button class="contact_button" aria-label="Contact Me">Contactez-moi</button>
+        <button class="contact_button" aria-label="Contactez moi">Contactez-moi</button>
       </div>
       <div class="sort">
-        <strong>Trier par</strong>
+        <strong id="label-sort">Trier par</strong>
         <div class="sort-options_container">
-          <button class="main-sort-option option_popularity" role="button" aria-haspopup="listbox" aria-expanded="false">
-            <div>
+          <button class="main-sort-option option_popularity" aria-haspopup="listbox" aria-expanded="false">
+            <span>
               <strong>Popularité</strong> 
               <i class="fa-solid fa-chevron-up"></i>
-            </div>
+            </span>
           </button>
-          <button class="sort-options option_date hidden" role="option">
-            <div>
-              <strong>Date</strong>
-            </div>
-          </button>
-          <button class="sort-options option_title hidden" role="option">
-            <div>
-              <strong>Titre</strong>
-            </div>
-          </button>
+          <div role="listbox">
+            <button class="sort-options option_date hidden" role="option">
+              <span>
+                <strong>Date</strong>
+              </span>
+            </button>
+            <button class="sort-options option_title hidden" role="option">
+              <span>
+                <strong>Titre</strong>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
       <section class="photographer-media"></section>
@@ -74,11 +76,11 @@
 		</div>
     <div id="lightbox-modal" role="dialog" aria-label="Vue de l'image en premier plan" aria-hidden="true">
       <img src="assets/icons/close_lightBox.svg" class="close-lightbox-modal" alt="" aria-label="Ferme la fenetre de dialog" tabindex="0">
-      <i class="fa-solid fa-chevron-left controls-lightbox_prev" aria-label="Image précedente" tabindex="0"></i>
+      <i class="fa-solid fa-chevron-left controls-lightbox_prev" role="img" aria-label="Image précedente"></i>
       <ul>
         <li class="slide-container"></li>
       </ul>
-      <i class="fa-solid fa-chevron-right controls-lightbox_next" aria-label="Image suivante" tabindex="0"></i>
+      <i class="fa-solid fa-chevron-right controls-lightbox_next" role="img" aria-label="Image suivante"></i>
     </div>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/factories/photographerMedia.js"></script>

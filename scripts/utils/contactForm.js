@@ -28,7 +28,6 @@ function displayModal() {
 	modal.style.display = "block";
     main.setAttribute("aria-hidden","true");
     modal.setAttribute("aria-hidden","false");
-    console.log(modalHeaderTitle);
     modalHeaderTitle.textContent+=" "+photographerName.textContent;
     document.querySelector("#firstname").focus();
     

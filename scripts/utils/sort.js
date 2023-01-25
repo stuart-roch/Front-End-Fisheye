@@ -37,60 +37,66 @@ function replaceOption(newOption){
     optionContainer.innerHTML="";
     if(newOption.getAttribute("class").includes("option_date")){
         optionContainer.innerHTML=`
-		<button class="main-sort-option option_date" aria-expanded="false">
-        <div>
+        <button class="main-sort-option option_date" aria-haspopup="listbox" aria-expanded="false">
+        <span>
           <strong>Date</strong> 
           <i class="fa-solid fa-chevron-up"></i>
-        </div>
+        </span>
       </button>
-      <button class="sort-options option_popularity hidden">
-        <div>
-          <strong>Popularité</strong>
-        </div>
-      </button>
-      <button class="sort-options option_title hidden">
-        <div>
-          <strong>Titre</strong>
-        </div>
-      </button>`
+      <div role="listbox">
+        <button class="sort-options option_popularity hidden" role="option">
+          <span>
+            <strong>Popularité</strong>
+          </span>
+        </button>
+        <button class="sort-options option_title hidden" role="option">
+          <span>
+            <strong>Titre</strong>
+          </span>
+        </button>
+      </div>`
     }
     if(newOption.getAttribute("class").includes("option_title")){
         optionContainer.innerHTML=`
-		<button class="main-sort-option option_date" aria-expanded="false">
-        <div>
+        <button class="main-sort-option option_title" aria-haspopup="listbox" aria-expanded="false">
+        <span>
           <strong>Titre</strong> 
           <i class="fa-solid fa-chevron-up"></i>
-        </div>
+        </span>
       </button>
-      <button class="sort-options option_popularity hidden">
-        <div>
-          <strong>Popularité</strong>
-        </div>
-      </button>
-      <button class="sort-options option_title hidden">
-        <div>
-          <strong>Date</strong>
-        </div>
-      </button>`
+      <div role="listbox">
+        <button class="sort-options option_date hidden" role="option">
+          <span>
+            <strong>Date</strong>
+          </span>
+        </button>
+        <button class="sort-options option_popularity hidden" role="option">
+          <span>
+            <strong>Popularité</strong>
+          </span>
+        </button>
+      </div>`
     }
     if(newOption.getAttribute("class").includes("option_popularity")){
         optionContainer.innerHTML=`
-		<button class="main-sort-option option_popularity" aria-expanded="false">
-        <div>
+        <button class="main-sort-option option_popularity" aria-haspopup="listbox" aria-expanded="false">
+        <span>
           <strong>Popularité</strong> 
           <i class="fa-solid fa-chevron-up"></i>
-        </div>
+        </span>
       </button>
-      <button class="sort-options option_date hidden">
-        <div>
-          <strong>Date</strong>
-        </div>
-      </button>
-      <button class="sort-options option_title hidden">
-        <div>
-          <strong>Titre</strong>
-        </div>
-      </button>`
+      <div role="listbox">
+        <button class="sort-options option_date hidden" role="option">
+          <span>
+            <strong>Date</strong>
+          </span>
+        </button>
+        <button class="sort-options option_title hidden" role="option">
+          <span>
+            <strong>Titre</strong>
+          </span>
+        </button>
+      </div>`
     }
     sort();
 }
